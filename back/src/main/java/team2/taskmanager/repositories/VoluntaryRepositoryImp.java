@@ -1,17 +1,23 @@
 package team2.taskmanager.repositories;
 import team2.taskmanager.models.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import java.util.List;
+import org.bson.Document;
+import java.util.ArrayList;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+
 
 @Repository
 public class VoluntaryRepositoryImp implements VoluntaryRepository{
     @Autowired
-    private Sql2o sql2o;
+    MongoDatabase database;
 
-    @Override
+    /*@Override
     public Voluntary createVoluntary(Voluntary voluntary){
         try(Connection conn = sql2o.open()){
             int insertedId = (int) conn.createQuery("INSERT INTO voluntary (name, disponibilidad, id_emergency) values (:volName, :volDisp, :idEmergency)", true)
@@ -25,20 +31,19 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
             System.out.println(e.getMessage());
             return null;
         }
-    }
+    }*/
 
     
     @Override
     public List<Voluntary> getAllVoluntary(){   
-        try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM voluntary")
-                    .executeAndFetch(Voluntary.class);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+        MongoCollection<Voluntary> collection = database.getCollection("voluntary", Voluntary.class);
+        List <Voluntary> voluntaries = collection.find().into(new ArrayList<>());
+        
+        return voluntaries;
+        
     }
 
+/*
     @Override
     public void deleteVoluntary(int id) {
             String deleteSql ="DELETE FROM voluntary WHERE id_voluntary = :id";
@@ -65,5 +70,5 @@ public class VoluntaryRepositoryImp implements VoluntaryRepository{
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 }

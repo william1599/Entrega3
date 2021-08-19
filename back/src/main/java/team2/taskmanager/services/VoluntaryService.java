@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
+
 @CrossOrigin
 @RestController
 public class VoluntaryService {
@@ -25,7 +26,7 @@ public class VoluntaryService {
         return VoluntaryRepository.getAllVoluntary();
     }
 
-    @PostMapping("/voluntaries")
+    /* @PostMapping("/voluntaries")
     @ResponseBody
     public Voluntary createVoluntary(@RequestBody Voluntary voluntary){
         Voluntary result = VoluntaryRepository.createVoluntary(voluntary);
@@ -37,14 +38,14 @@ public class VoluntaryService {
     public List<Voluntary> deleteVoluntary(@PathVariable int id){
         VoluntaryRepository.deleteVoluntary(id);
         return VoluntaryRepository.getAllVoluntary();
-    }
-
+    }*/
+    /*
     @PutMapping("/voluntaries/update/{id}")
     @ResponseBody
     public List<Voluntary> updateVoluntary(@RequestBody Voluntary voluntary, @PathVariable int id){
         VoluntaryRepository.updateVoluntary(voluntary, id);
         return VoluntaryRepository.getAllVoluntary();
-    }
+    }*/
     
 
 }

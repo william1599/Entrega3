@@ -1,7 +1,5 @@
 package team2.taskmanager.repositories;
 import team2.taskmanager.models.*;
-
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -9,8 +7,8 @@ import org.sql2o.Sql2o;
 import java.util.List;
 
 @Repository
-public class SkillRepositoryImp implements SkillRepository {}
-/*
+public class SkillRepositoryImp implements SkillRepository {
+
     @Autowired
     private Sql2o sql2o;
 
@@ -28,7 +26,7 @@ public class SkillRepositoryImp implements SkillRepository {}
     @Override
     public Skill createSkill(Skill skill) {
         try(Connection conn = sql2o.open()){
-            ObjectId insertedId = (ObjectId) conn.createQuery("INSERT INTO skill (name) values (:skillName)", true)
+            int insertedId = (int) conn.createQuery("INSERT INTO skill (name) values (:skillName)", true)
                     .addParameter("skillName", skill.getName())
                     .executeUpdate().getKey();
             skill.setId_skill(insertedId);
@@ -65,4 +63,4 @@ public class SkillRepositoryImp implements SkillRepository {}
             System.out.println(e.getMessage());
         }
     }
-}*/
+}

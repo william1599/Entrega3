@@ -9,26 +9,22 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
 import java.util.List;
-
 
 @CrossOrigin
 @RestController
 public class VoluntaryService {
-    /*
+    
     private final VoluntaryRepository VoluntaryRepository;
     VoluntaryService(VoluntaryRepository VoluntaryRepository){
         this.VoluntaryRepository = VoluntaryRepository;
     }
 
-     
-    @GetMapping("/voluntaries/skills")
-    public ArrayList<Get_skill> countSkills(){
-        return SkillPorVolRepository.countSkills();
+    @GetMapping("/voluntaries")
+    public List<Voluntary> getAllVoluntary(){
+        return VoluntaryRepository.getAllVoluntary();
     }
-    
+
     @PostMapping("/voluntaries")
     @ResponseBody
     public Voluntary createVoluntary(@RequestBody Voluntary voluntary){
@@ -41,14 +37,14 @@ public class VoluntaryService {
     public List<Voluntary> deleteVoluntary(@PathVariable int id){
         VoluntaryRepository.deleteVoluntary(id);
         return VoluntaryRepository.getAllVoluntary();
-    }*/
-    /*
+    }
+
     @PutMapping("/voluntaries/update/{id}")
     @ResponseBody
     public List<Voluntary> updateVoluntary(@RequestBody Voluntary voluntary, @PathVariable int id){
         VoluntaryRepository.updateVoluntary(voluntary, id);
         return VoluntaryRepository.getAllVoluntary();
-    }*/
+    }
     
 
 }

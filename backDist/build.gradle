@@ -1,0 +1,25 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'team2'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile group: 'org.sql2o', name: 'sql2o', version: '1.6.0' 	
+	compile 'org.postgresql:postgresql:42.2.5'
+
+}
+
+test {
+	useJUnitPlatform()
+}

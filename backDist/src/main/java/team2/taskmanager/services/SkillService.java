@@ -14,7 +14,6 @@ import java.util.List;
 @CrossOrigin
 @RestController
 public class SkillService {
-    /*
 
     private final SkillRepository SkillRepository;
     SkillService(SkillRepository SkillRepository){
@@ -45,5 +44,5 @@ public class SkillService {
     public List<Skill> updateSkill(@RequestBody Skill skill, @PathVariable int id){
         SkillRepository.updateSkill(skill, id);
         return SkillRepository.getAllSkill();
-    }*/
+    }
 }

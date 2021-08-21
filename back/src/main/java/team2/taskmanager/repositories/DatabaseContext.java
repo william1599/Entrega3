@@ -23,10 +23,6 @@ public class DatabaseContext {
     @Value("${database.password}")
     private String dbPass;
     
-    @Bean
-    public Sql2o sql2o(){
-        return new Sql2o(dbUrl, dbUser, dbPass);
-    }
     @Bean 
     MongoDatabase database(){
         CodecRegistry defaultCodecRegistry = MongoClientSettings.getDefaultCodecRegistry();
@@ -37,4 +33,9 @@ public class DatabaseContext {
         MongoDatabase database = mongoClient.getDatabase("grupo2").withCodecRegistry(pojoCodecRegistry);
         return database;
     }
+    @Bean
+    public Sql2o sql2o(){
+        return new Sql2o(dbUrl, dbUser, dbPass);
+    }
+    
 }

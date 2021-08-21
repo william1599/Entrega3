@@ -1,7 +1,5 @@
 package team2.taskmanager.repositories;
 import team2.taskmanager.models.*;
-
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -9,16 +7,17 @@ import org.sql2o.Sql2o;
 import java.util.List;
 
 @Repository
-public class SkillRepositoryImp implements SkillRepository {}
-/*
+public class InstitutionRepositorylmp implements InstitutionRepository {
+
     @Autowired
     private Sql2o sql2o;
+    
 
     @Override
-    public List<Skill> getAllSkill(){   
+    public List<Institution> getAllInstitution(){   
         try(Connection conn = sql2o.open()){
-            return conn.createQuery("SELECT * FROM skill")
-                    .executeAndFetch(Skill.class);
+            return conn.createQuery("SELECT * FROM institution")
+                    .executeAndFetch(Institution.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -26,22 +25,23 @@ public class SkillRepositoryImp implements SkillRepository {}
     }
 
     @Override
-    public Skill createSkill(Skill skill) {
+    public Institution createInstitution(Institution institution) {
         try(Connection conn = sql2o.open()){
-            ObjectId insertedId = (ObjectId) conn.createQuery("INSERT INTO skill (name) values (:skillName)", true)
-                    .addParameter("skillName", skill.getName())
+            int insertedId = (int) conn.createQuery("INSERT INTO institution (name) values (:institutionName)", true)
+                    .addParameter("institutionName", institution.getName())
                     .executeUpdate().getKey();
-            skill.setId_skill(insertedId);
-            return skill;        
+            institution.setId_institution(insertedId);
+            return institution;        
         }catch(Exception e){
             System.out.println(e.getMessage());
             return null;
         }
     }
 
+    
     @Override
-    public void deleteSkill(int id) {
-            String deleteSql ="DELETE FROM skill WHERE id_skill = :id";
+    public void deleteInstitution(int id) {
+            String deleteSql ="DELETE FROM institution WHERE id_institution = :id";
             try(Connection conn = sql2o.open()){
                 conn.createQuery(deleteSql)
                 .addParameter("id", id)
@@ -53,11 +53,11 @@ public class SkillRepositoryImp implements SkillRepository {}
     }
 
     @Override
-    public void updateSkill(Skill skill, int id) {
-        String updateSql = "update skill set name = :skillName where id_skill = :id";
+    public void updateInstitution(Institution institution, int id) {
+        String updateSql = "update institution where id_institution = :id";
         try(Connection conn = sql2o.open()){
                     conn.createQuery(updateSql)
-                    .addParameter("skillName", skill.getName())
+                    .addParameter("institutionName", institution.getName())
                     .addParameter("id", id)
                     .executeUpdate();
             return;
@@ -65,4 +65,4 @@ public class SkillRepositoryImp implements SkillRepository {}
             System.out.println(e.getMessage());
         }
     }
-}*/
+}

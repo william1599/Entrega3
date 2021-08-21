@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
+import team2.taskmanager.models.Skill;
 
 public class Voluntary{
 	@BsonId
@@ -14,14 +15,22 @@ public class Voluntary{
     private String disponibilidad;
 	private int id_emergency;
 	private List<Float> location;
+	private List<Skill> skills;
 
-	public Voluntary(String name, String disponibilidad, int id_emergency, List<Float> location){
+	public Voluntary(ObjectId _id, String name, String disponibilidad, int id_emergency, List<Float> location, List<Skill> skills){
+		this._id = _id;
 		this.name = name;
 		this.disponibilidad = disponibilidad;
 		this.id_emergency = id_emergency;
 		this.location = location;
+		this.skills = skills;
 
-
+	}
+	public List<Skill> getSkills() {
+		return skills;
+	}
+	public void setSkills(List<Skill> skills) {
+		this.skills = skills;
 	}
 	public List<Float> getLocation() {
 		return this.location;

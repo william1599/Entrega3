@@ -62,12 +62,39 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
     @Override
     public Emergency createEmergency(Emergency emergency) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO emergency (name, estado) values (:emergencyName, :emergencyEstado)", true)
+            int cod_emergency = emergency.getCod_emergency();
+            int tabla = cod_emergency % 3;
+            if(tabla == 0){
+
+            int insertedId = (int) conn.createQuery("INSERT INTO emergencia0 (cod_emergency, name, estado) values (:emergencycod_emergency, :emergencyName, :emergencyEstado)", true)
+                    .addParameter("emergencycod_emergency", emergency.getCod_emergency())
                     .addParameter("emergencyName", emergency.getName())
                     .addParameter("emergencyEstado", emergency.isEstado())
                     .executeUpdate().getKey();
             emergency.setId_emergency(insertedId);
-            return emergency;        
+            emergency.setTableName("emergencia0");
+            }
+            if(tabla == 1){
+
+            int insertedId = (int) conn.createQuery("INSERT INTO emergencia1 (cod_emergency, name, estado) values (:emergencycod_emergency, :emergencyName, :emergencyEstado)", true)
+                    .addParameter("emergencycod_emergency", emergency.getCod_emergency())
+                    .addParameter("emergencyName", emergency.getName())
+                    .addParameter("emergencyEstado", emergency.isEstado())
+                    .executeUpdate().getKey();
+            emergency.setId_emergency(insertedId);
+            emergency.setTableName("emergencia1");
+        }
+            if(tabla == 2){
+
+            int insertedId = (int) conn.createQuery("INSERT INTO emergencia2 (cod_emergency, name, estado) values (:emergencycod_emergency, :emergencyName, :emergencyEstado)", true)
+                    .addParameter("emergencycod_emergency", emergency.getCod_emergency())
+                    .addParameter("emergencyName", emergency.getName())
+                    .addParameter("emergencyEstado", emergency.isEstado())
+                    .executeUpdate().getKey();
+            emergency.setId_emergency(insertedId);
+            emergency.setTableName("emergencia2");
+        }
+        return emergency;
         }catch(Exception e){
             System.out.println(e.getMessage());
             return null;

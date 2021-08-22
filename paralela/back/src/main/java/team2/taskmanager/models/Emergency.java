@@ -3,16 +3,34 @@ import org.postgresql.util.PGobject;
 
 public class Emergency {
     private Integer id_emergency;
+    private Integer cod_emergency;
     private String name;
     private boolean estado;
     private Integer id_institution;
     private PGobject location;
+    private String tableName;
 
 	public PGobject getLocation() {
 		return this.location;
 	}
 
-	public void setLocation(PGobject location) {
+	public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
+
+    public Integer getCod_emergency() {
+        return cod_emergency;
+    }
+
+    public void setCod_emergency(Integer cod_emergency) {
+        this.cod_emergency = cod_emergency;
+    }
+
+    public void setLocation(PGobject location) {
 		this.location = location;
 	}
 

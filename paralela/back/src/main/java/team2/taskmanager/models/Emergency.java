@@ -2,7 +2,6 @@ package team2.taskmanager.models;
 import org.postgresql.util.PGobject;
 
 public class Emergency {
-    private Integer id_emergency;
     private Integer cod_emergency;
     private String name;
     private boolean estado;
@@ -34,13 +33,7 @@ public class Emergency {
 		this.location = location;
 	}
 
-    public Integer getId_emergency() {
-        return this.id_emergency;
-    }
-
-    public void setId_emergency(Integer id_emergency) {
-        this.id_emergency = id_emergency;
-    }
+   
 
     public String getName() {
         return this.name;

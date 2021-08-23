@@ -66,33 +66,33 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
             int tabla = cod_emergency % 3;
             if(tabla == 0){
             String nombreTabla = "emergencia0";
-            int insertedId = (int) conn.createQuery("INSERT INTO emergency0 (cod_emergency, name, estado, tableName) values (:emergencycod_emergency, :emergencyName, :emergencyEstado, :emergencyTable)", true)
+            int insertedId = (int) conn.createQuery("INSERT INTO emergency0 (cod_emergency, name, estado, id_institution, tableName) values (:emergencycod_emergency, :emergencyName, :emergencyEstado, :idInstitution, :emergencyTable)", true)
                     .addParameter("emergencycod_emergency", emergency.getCod_emergency())
                     .addParameter("emergencyName", emergency.getName())
                     .addParameter("emergencyEstado", emergency.getEstado())
+                    .addParameter("idInstitution", emergency.getId_institution())
                     .addParameter("emergencyTable", nombreTabla)
                     .executeUpdate().getKey();
-            emergency.setId_emergency(insertedId);
             }
             if(tabla == 1){
             String nombreTabla = "emergencia1";
-            int insertedId = (int) conn.createQuery("INSERT INTO emergency1 (cod_emergency, name, estado, tableName) values (:emergencycod_emergency, :emergencyName, :emergencyEstado, :emergencyTable)", true)
+            int insertedId = (int) conn.createQuery("INSERT INTO emergency1 (cod_emergency, name, estado, id_institution, tableName) values (:emergencycod_emergency, :emergencyName, :emergencyEstado, :idInstitution, :emergencyTable)", true)
                     .addParameter("emergencycod_emergency", emergency.getCod_emergency())
                     .addParameter("emergencyName", emergency.getName())
                     .addParameter("emergencyEstado", emergency.getEstado())
+                    .addParameter("idInstitution", emergency.getId_institution())
                     .addParameter("emergencyTable", nombreTabla)
                     .executeUpdate().getKey();
-            emergency.setId_emergency(insertedId);
         }
             if(tabla == 2){
             String nombreTabla = "emergencia2";
-            int insertedId = (int) conn.createQuery("INSERT INTO emergency2 (cod_emergency, name, estado, tableName) values (:emergencycod_emergency, :emergencyName, :emergencyEstado, :emergencyTable)", true)
+            int insertedId = (int) conn.createQuery("INSERT INTO emergency2 (cod_emergency, name, estado, id_institution, tableName) values (:emergencycod_emergency, :emergencyName, :emergencyEstado, :idInstitution, :emergencyTable)", true)
                     .addParameter("emergencycod_emergency", emergency.getCod_emergency())
                     .addParameter("emergencyName", emergency.getName())
                     .addParameter("emergencyEstado", emergency.getEstado())
+                    .addParameter("idInstitution", emergency.getId_institution())
                     .addParameter("emergencyTable", nombreTabla)
                     .executeUpdate().getKey();
-            emergency.setId_emergency(insertedId);
         }
         return emergency;
         }catch(Exception e){

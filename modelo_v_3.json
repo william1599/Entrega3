@@ -1,34 +1,33 @@
-db.Voluntary.insertMany([
-    {
-        "name":"Thomás",
-        "disponibilidad":"true",
-        "location": [-70.393197, -23.644550],
-        "id_emergency":1,
-        "skills": [
-            {
-                "name":"orientador",
-                "description":"Orientar a voluntarios en el desarrollo de sus tareas",
-                "code":"SK5"
-            }
-        ]     
-    },
-    {
-        "name":"Mia",
-        "disponibilidad":"false",
-        "location": [-70.389790, -23.548849],
-        "id_emergency":2,
-        "skills": [
-            {
-                "name":"manual",
-                "description":"Facilidad para trabajos en áreas manuales",
-                "code":"SK3"
-            },
-            {
-                "name":"comunicador",
-                "description":"Entregar comunicados importantes a voluntarios",
-                "code":"SK4"
-            }
-        ]        
+[{
+    "name":"Thomás",
+    "disponibilidad":"true",
+    "location": [-70.393197, -23.644550],
+    "id_emergency":1,
+    "skills": [
+        {
+            "name":"orientador",
+            "description":"Orientar a voluntarios en el desarrollo de sus tareas",
+            "code":"SK5"
+        }
+    ]     
+},
+{
+    "name":"Mia",
+    "disponibilidad":"false",
+    "location": [-70.389790, -23.548849],
+    "id_emergency":2,
+    "skills": [
+        {
+            "name":"manual",
+            "description":"Facilidad para trabajos en áreas manuales",
+            "code":"SK3"
+        },
+        {
+            "name":"comunicador",
+            "description":"Entregar comunicados importantes a voluntarios",
+            "code":"SK4"
+        }
+    ]        
     },
     {
         "name":"Juanita",
@@ -514,7 +513,7 @@ db.Voluntary.insertMany([
                 "name":"orientador",
                 "description":"Orientar a voluntarios en el desarrollo de sus tareas",
                 "code":"SK5"
-            },
+            }
         ]
     },
     {
@@ -635,4 +634,4 @@ db.Voluntary.insertMany([
             }            
         ]
     }    
-]);
+]

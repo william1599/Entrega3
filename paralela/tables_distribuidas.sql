@@ -15,7 +15,6 @@ CREATE TABLE skill (
 
 CREATE TABLE emergency0 (
     cod_emergency integer PRIMARY KEY,
-    id_emergency integer,
     name text,
     estado boolean,
     tableName text,
@@ -23,7 +22,6 @@ CREATE TABLE emergency0 (
 );
 CREATE TABLE emergency1 (
     cod_emergency integer PRIMARY KEY,
-    id_emergency integer,
     name text,
     estado boolean,
     tableName text,
@@ -31,7 +29,6 @@ CREATE TABLE emergency1 (
 );
 CREATE TABLE emergency2 (
     cod_emergency integer PRIMARY KEY,
-    id_emergency integer,
     name text,
     estado boolean,
     tableName text,

@@ -65,34 +65,34 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
             int cod_emergency = emergency.getCod_emergency();
             int tabla = cod_emergency % 3;
             if(tabla == 0){
-
-            int insertedId = (int) conn.createQuery("INSERT INTO emergencia0 (cod_emergency, name, estado) values (:emergencycod_emergency, :emergencyName, :emergencyEstado)", true)
+            String nombreTabla = "emergencia0";
+            int insertedId = (int) conn.createQuery("INSERT INTO emergency0 (cod_emergency, name, estado, tableName) values (:emergencycod_emergency, :emergencyName, :emergencyEstado, :emergencyTable)", true)
                     .addParameter("emergencycod_emergency", emergency.getCod_emergency())
                     .addParameter("emergencyName", emergency.getName())
-                    .addParameter("emergencyEstado", emergency.isEstado())
+                    .addParameter("emergencyEstado", emergency.getEstado())
+                    .addParameter("emergencyTable", nombreTabla)
                     .executeUpdate().getKey();
             emergency.setId_emergency(insertedId);
-            emergency.setTableName("emergencia0");
             }
             if(tabla == 1){
-
-            int insertedId = (int) conn.createQuery("INSERT INTO emergencia1 (cod_emergency, name, estado) values (:emergencycod_emergency, :emergencyName, :emergencyEstado)", true)
+            String nombreTabla = "emergencia1";
+            int insertedId = (int) conn.createQuery("INSERT INTO emergency1 (cod_emergency, name, estado, tableName) values (:emergencycod_emergency, :emergencyName, :emergencyEstado, :emergencyTable)", true)
                     .addParameter("emergencycod_emergency", emergency.getCod_emergency())
                     .addParameter("emergencyName", emergency.getName())
-                    .addParameter("emergencyEstado", emergency.isEstado())
+                    .addParameter("emergencyEstado", emergency.getEstado())
+                    .addParameter("emergencyTable", nombreTabla)
                     .executeUpdate().getKey();
             emergency.setId_emergency(insertedId);
-            emergency.setTableName("emergencia1");
         }
             if(tabla == 2){
-
-            int insertedId = (int) conn.createQuery("INSERT INTO emergencia2 (cod_emergency, name, estado) values (:emergencycod_emergency, :emergencyName, :emergencyEstado)", true)
+            String nombreTabla = "emergencia2";
+            int insertedId = (int) conn.createQuery("INSERT INTO emergency2 (cod_emergency, name, estado, tableName) values (:emergencycod_emergency, :emergencyName, :emergencyEstado, :emergencyTable)", true)
                     .addParameter("emergencycod_emergency", emergency.getCod_emergency())
                     .addParameter("emergencyName", emergency.getName())
-                    .addParameter("emergencyEstado", emergency.isEstado())
+                    .addParameter("emergencyEstado", emergency.getEstado())
+                    .addParameter("emergencyTable", nombreTabla)
                     .executeUpdate().getKey();
             emergency.setId_emergency(insertedId);
-            emergency.setTableName("emergencia2");
         }
         return emergency;
         }catch(Exception e){
@@ -141,5 +141,49 @@ public class EmergencyRepositoryImp implements EmergencyRepository {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public List<Get_Skills> findSkillsEmergency(int cod_emergency) {
+        int tabla = cod_emergency % 3;
+        List<Get_Skills> retorno = null; 
+        if(tabla == 0){
+            String findSql = "SELECT DISTINCT E.name as EName, E.tableName as ETableName, S.name as SName, ES.tableName as ESTableName FROM skill S, emergency0 E, eme_Skill0 ES WHERE E.cod_emergency = :id and ES.cod_emergency = :id and ES.id_skill = S.id_skill ";
+            try(Connection conn = sql2o.open()){
+                retorno = conn.createQuery(findSql)
+                .addParameter("id", cod_emergency)
+                .executeAndFetch(Get_Skills.class);
+            
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+                return null;
+            }
+        }
+        if(tabla == 1){
+            String findSql = "SELECT DISTINCT E.name as EName, E.tableName as ETableName , S.name as SName, ES.tableName as ESTableName FROM skill S, emergency1 E, eme_Skill1 ES WHERE E.cod_emergency = :id and ES.cod_emergency = :id and ES.id_skill = S.id_skill ";
+            try(Connection conn = sql2o.open()){
+                retorno =conn.createQuery(findSql)
+                .addParameter("id", cod_emergency)
+                .executeAndFetch(Get_Skills.class);
+            
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+                return null;
+            }
+        }
+        if(tabla == 2){
+            String findSql = "SELECT DISTINCT E.name as EName, E.tableName as EtableName, S.name as SName, ES.tableName as estableName FROM skill S, emergency2 E, eme_Skill2 ES WHERE E.cod_emergency = :id and ES.cod_emergency = :id and ES.id_skill = S.id_skill";
+            try(Connection conn = sql2o.open()){
+                retorno =conn.createQuery(findSql)
+                .addParameter("id", cod_emergency)
+                .executeAndFetch(Get_Skills.class);
+            
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+                return null;
+            }
+            
+        }
+        return retorno;
     }
 }

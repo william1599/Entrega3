@@ -14,12 +14,38 @@ public class Eme_skillRepositoryImp implements Eme_skillRepository{
     @Override
     public Eme_skill createEme_skill(Eme_skill eme_skill) {
         try(Connection conn = sql2o.open()){
-            int insertedId = (int) conn.createQuery("INSERT INTO eme_skill (id_emergency, id_skill) values (:eme_skill_id_emergency, :eme_skill_id_skill)", true)
-            .addParameter("eme_skill_id_emergency", eme_skill.getId_emergency())
-            .addParameter("eme_skill_id_skill", eme_skill.getId_skill())
-            .executeUpdate().getKey();
+            int cod_emergency = eme_skill.getCod_emergency();
+            System.out.println(Integer.toString(cod_emergency));
+            int tabla = cod_emergency % 3;
+            
+            if(tabla == 0){
+            String nombreTabla = "eme_habilidad0";
+            int insertedId = (int) conn.createQuery("INSERT INTO eme_skill0(cod_emergency, id_skill, tableName) values (:codemergency, :idSkill, :skillTable)", true)
+                    .addParameter("codemergency", eme_skill.getCod_emergency())
+                    .addParameter("idSkill", eme_skill.getId_skill())
+                    .addParameter("skillTable", nombreTabla)
+                    .executeUpdate().getKey();
             eme_skill.setId_eme_skill(insertedId);
-            return eme_skill;        
+            }
+            if(tabla == 1){
+            String nombreTabla = "eme_habilidad1";
+            int insertedId = (int) conn.createQuery("INSERT INTO eme_skill1(cod_emergency, id_skill, tableName) values (:codemergency, :idSkill, :skillTable)", true)
+                    .addParameter("codemergency", eme_skill.getCod_emergency())
+                    .addParameter("idSkill", eme_skill.getId_skill())
+                    .addParameter("skillTable", nombreTabla)
+                    .executeUpdate().getKey();
+            eme_skill.setId_eme_skill(insertedId);
+        }
+            if(tabla == 2){
+            String nombreTabla = "eme_habilidad2";
+            int insertedId = (int) conn.createQuery("INSERT INTO eme_skill2 (cod_emergency, id_skill, tableName) values (:codemergency, :idSkill, :skillTable)", true)
+                    .addParameter("codemergency", eme_skill.getCod_emergency())
+                    .addParameter("idSkill", eme_skill.getId_skill())
+                    .addParameter("skillTable", nombreTabla)
+                    .executeUpdate().getKey();
+            eme_skill.setId_eme_skill(insertedId);
+        }
+        return eme_skill;
         }catch(Exception e){
             System.out.println(e.getMessage());
             return null;
@@ -55,7 +81,7 @@ public class Eme_skillRepositoryImp implements Eme_skillRepository{
         String updateSql = "update eme_skill set id_emergency = :eme_skill_id_emergency, id_skill = :eme_skill_id_skill where id_eme_skill = :id";
         try(Connection conn = sql2o.open()){
                     conn.createQuery(updateSql)
-                    .addParameter("eme_skill_id_emergency", eme_skill.getId_emergency())
+                    .addParameter("eme_skill_id_emergency", eme_skill.getCod_emergency())
                     .addParameter("eme_skill_id_skill", eme_skill.getId_skill())
                     .addParameter("id", id)
                     .executeUpdate();

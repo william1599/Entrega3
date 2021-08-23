@@ -9,4 +9,5 @@ public interface EmergencyRepository {
     public Emergency createEmergency(Emergency emergency);
     public void deleteEmergency(int id);
     public List<Voluntary> findVoluntary(int id, int R);
+    public List<Get_Skills> findSkillsEmergency(int cod_emergency);
 }

@@ -54,5 +54,8 @@ public class EmergencyService {
     public List<Voluntary> findVoluntary(@PathVariable int id, @PathVariable int R){
         return EmergencyRepository.findVoluntary(id, R);
     }
-
+    @GetMapping("/emergencies/findSkills/{id}")
+    public List<Get_Skills> findSkillsEmergency(@PathVariable int id){
+        return EmergencyRepository.findSkillsEmergency(id);
+    }
 }

@@ -23,7 +23,7 @@ public class Emergency {
     }
 
     public Integer getCod_emergency() {
-        return cod_emergency;
+        return this.cod_emergency;
     }
 
     public void setCod_emergency(Integer cod_emergency) {
@@ -50,7 +50,7 @@ public class Emergency {
         this.name = name;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return this.estado;
     }
 
